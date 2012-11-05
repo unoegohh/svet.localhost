@@ -1,8 +1,62 @@
 imports:
     - { resource: parameters.dist.yml }
     - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: adminServices.yml }
 
 framework:
     secret: %secret%
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     templating: { engines: [twig] }
+    translator: { fallback: ru }
+    validation: { enable_annotations: true }
+    form: ~
+    csrf_protection: ~
+    session: ~
+
+doctrine:
+    dbal:
+        driver: %database_driver%
+        host: %database_host%
+        port: %database_port%
+        dbname: %database_name%
+        user: %database_user%
+        password: %database_password%
+        path: %database_path%
+        charset: UTF8
+    orm:
+        auto_mapping: true
+
+sonata_admin:
+    title:      Unoegohh
+    title_logo: /bundles/sonataadmin/logo_title.png
+    templates:
+        # default global templates
+        layout:  SonataAdminBundle::my_standard_layout.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Unoegohh\UserBundle\Entity\User
+
+
+stfalcon_tinymce:
+    textarea_class: "tinymce"
+    theme:
+        advanced:
+            width: '700px'
+            height: '500px'
+            theme: "advanced"
+            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template"
+            theme_advanced_buttons1: "image,bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,fontsizeselect,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,cleanup,|,hr,removeformat,visualaid,|,fullscreen"
+            theme_advanced_buttons2: "tablecontrols"
+            theme_advanced_toolbar_location: "top"
+            theme_advanced_toolbar_align: "left"
+            theme_advanced_statusbar_location: "bottom"
+            theme_advanced_resizing: true

@@ -12,6 +12,21 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Unoegohh\UserBundle\UnoegohhUserBundle(),
+            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new Unoegohh\AdminBundle\UnoegohhAdminBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
