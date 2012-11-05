@@ -19,11 +19,15 @@ class ProductAdmin extends Admin
             ->with('General')
             ->add('enabled', null, array('required' => false, 'label' => 'Видимость'))
             ->add('name',null,array('label' => 'Название товара'))
-            ->add('desc_small',null,array('label' => 'Описание (маленькое)'))
-            ->add('desc',null,array('label' => 'Описание'))
+            ->add('descr_small',null,array('label' => 'Описание (маленькое)'))
+            ->add('descr',null,array('label' => 'Описание'))
             ->add('price',null,array('label' => 'Цена'))
             ->add('category','sonata_type_model',array('label' => 'Категория'))
             ->add('position',null,array('label' => 'Порядок', 'required' => false))
+            ->add('photos','sonata_type_collection',array('label' => 'Фото', 'required' => false, 'by_reference' => false), array(
+                'edit' => 'inline',
+                'inline' => 'table'
+            ))
             ->end()
         ;
     }

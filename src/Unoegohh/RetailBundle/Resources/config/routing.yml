@@ -1,0 +1,11 @@
+unoegohh_retail_homepage:
+    pattern:  /
+    defaults: { _controller: UnoegohhRetailBundle:Default:index }
+
+
+
+unoegohh_retail_page:
+    pattern:  /{url}
+    defaults: { _controller: UnoegohhRetailBundle:Page:index }
+    requirements:
+        url: ".*"

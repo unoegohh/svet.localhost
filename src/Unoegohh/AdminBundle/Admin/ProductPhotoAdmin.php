@@ -6,7 +6,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
-class ProductCategoryAdmin extends Admin
+class ProductPhotoAdmin extends Admin
 {
     /**
      * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
@@ -16,11 +16,9 @@ class ProductCategoryAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('enabled',null,array('label' => 'Видимость', 'required' => false))
-            ->add('title',null,array('label' => 'Название категории'))
-            ->add('url',null,array('label' => 'Ссылка'))
-            ->add('position',null,array('label' => 'Порядок', 'required' => false))
+            ->with('Основное')
+            ->add('url', null, array('label' => 'Ссылка на картинку'))
+            ->add('position', null, array('label' => 'Позиция'))
             ->end()
         ;
     }
@@ -33,9 +31,8 @@ class ProductCategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title',null,array('label' => 'Название'))
-            ->add('position',null,array('label' => 'Порядок'))
-            ->add('enabled',null,array('label' => 'Видимость'))
+            ->addIdentifier('url', null, array('label' => 'Ссылка'))
+            ->add('position', null, array('label' => 'Позиция'))
             ->add('_action', 'actions', array(
             'actions' => array(
 //                'view' => array(),
@@ -43,6 +40,18 @@ class ProductCategoryAdmin extends Admin
                 'delete' => array(),
             )
         ))
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     *
+     * @return void
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('url')
         ;
     }
 }

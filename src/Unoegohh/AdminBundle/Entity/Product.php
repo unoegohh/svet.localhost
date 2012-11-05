@@ -3,12 +3,19 @@
 namespace Unoegohh\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
  */
 
 class Product {
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+//        $this->category = new ArrayCollection();
+    }
 
     /**
      * @ORM\Id
@@ -30,12 +37,12 @@ class Product {
     /**
      * @ORM\Column(type="text")
      */
-    protected $desc;
+    protected $descr;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $desc_small;
+    protected $descr_small;
 
     /**
      * @ORM\Column(type="integer")
@@ -43,15 +50,21 @@ class Product {
     protected $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProductCategory",mappedBy="cat_id")
+     * @ORM\ManyToOne(targetEntity="ProductCategory")
      * @ORM\JoinColumn(name="category_id",referencedColumnName="id")
      */
     protected $category;
 
     /**
+     * @ORM\OneToMany(targetEntity="ProductPhoto",mappedBy="product",cascade={"persist", "remove"})
+     */
+    protected $photos;
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $position;
+
 
     public function setCategory($category)
     {
@@ -63,14 +76,14 @@ class Product {
         return $this->category;
     }
 
-    public function setDesc($desc)
+    public function setDescr($descr)
     {
-        $this->desc = $desc;
+        $this->descr = $descr;
     }
 
-    public function getDesc()
+    public function getDescr()
     {
-        return $this->desc;
+        return $this->descr;
     }
 
     public function setEnabled($enabled)
@@ -123,14 +136,35 @@ class Product {
         return $this->price;
     }
 
-    public function setDescSmall($desc_small)
+    public function setdescrSmall($descr_small)
     {
-        $this->desc_small = $desc_small;
+        $this->descr_small = $descr_small;
     }
 
-    public function getDescSmall()
+    public function getdescrSmall()
     {
-        return $this->desc_small;
+        return $this->descr_small;
+    }
+
+    public function addPhoto($photo)
+    {
+        $photo->setProduct($this);
+        $this->photos[] = $photo;
+    }
+
+    public function addPhotos($photos)
+    {
+        $this->addPhoto($photos);
+    }
+
+    public function removePhoto($photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 
 }

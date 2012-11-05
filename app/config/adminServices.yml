@@ -14,3 +14,8 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: 'Товары', label: 'Категории' }
       arguments: [null, Unoegohh\AdminBundle\Entity\ProductCategory, UnoegohhAdminBundle:ProductCategory]
+   unoegohh.admin.admin.productPhoto:
+      class: Unoegohh\AdminBundle\Admin\ProductPhotoAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: 'Товары', label: 'Фотографии' }
+      arguments: [null, Unoegohh\AdminBundle\Entity\ProductPhoto, UnoegohhAdminBundle:ProductPhoto]

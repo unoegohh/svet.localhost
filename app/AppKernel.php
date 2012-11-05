@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Unoegohh\AdminBundle\UnoegohhAdminBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 
+            new Unoegohh\RetailBundle\UnoegohhRetailBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

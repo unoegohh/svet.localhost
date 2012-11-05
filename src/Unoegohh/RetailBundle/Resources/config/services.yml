@@ -1,0 +1,7 @@
+parameters:
+#    unoegohh_retail.example.class: Unoegohh\RetailBundle\Example
+
+services:
+#    unoegohh_retail.example:
+#        class: %unoegohh_retail.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
