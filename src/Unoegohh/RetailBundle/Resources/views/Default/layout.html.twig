@@ -1,11 +1,20 @@
 {% extends "UnoegohhRetailBundle:Default:base.html.twig" %}
 
 {% block body %}
+    <div class="container">
+        {% render "UnoegohhRetailBundle:Menu:topMenu" %}
+        <div class="row">
+            <div class="span3">
 
-    {% render "UnoegohhRetailBundle:Menu:topMenu" %}
-    {% block content %}
+                {% render "UnoegohhRetailBundle:Menu:leftMenu" %}
+            </div>
+            <div class="span9">
 
-    {% endblock %}
-    {% render "UnoegohhRetailBundle:Menu:leftMenu" %}
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

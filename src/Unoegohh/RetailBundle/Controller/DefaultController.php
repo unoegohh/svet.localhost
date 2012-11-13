@@ -8,6 +8,10 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('UnoegohhRetailBundle:Default:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $page = $em->getRepository('UnoegohhAdminBundle:Page')->findOneBy(array('url' => 'index'));
+        return $this->render('UnoegohhRetailBundle:Default:index.html.twig', array(
+            'page' => $page,
+        ));
     }
 }

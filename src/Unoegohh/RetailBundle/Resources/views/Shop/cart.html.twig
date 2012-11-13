@@ -1,0 +1,76 @@
+{% extends "UnoegohhRetailBundle:Default:layout.html.twig" %}
+
+{% block content %}
+    <script type="text/javascript">
+        $(function(){
+            $('.remove_item').click(function(e){
+                var $this = $(this);
+                e.preventDefault();
+                console.log(2);
+                $.post($(this).attr('href'),function(data){
+                    console.log(1);
+                    if(data == 'ok'){
+                        $this.parents('tr').remove();
+                    }
+                });
+            });
+//
+            $('input').change(function(){
+                var count = $(this).val();
+                var $parent = $(this).parents('tr');
+                var price = $parent.find('[data-price]').attr('data-price');
+                var id = $parent.find('[data-id]').attr('data-id');
+
+                $.post('/cart/edit/' + id + '/' + count, function(data){
+                    var total_price = 0;
+                    var total_count = 0;
+                    if(data == 'ok'){
+                        $('[data-table] tr').each(function(){
+                            if(typeof ($('[data-price]', this).attr('data-price')) != 'undefined'){
+                                console.log();
+                                total_price += parseInt($('[data-price]', this).attr('data-price')) * parseInt($('input', this).val());
+                                total_count += parseInt($('input', this).val());
+                            }
+                        });
+                        $('[data-total-price]').html(total_price + ' Руб');
+                        $('[data-total-count]').html(total_count);
+                    }
+                });
+            });
+        });
+    </script>
+    <h2>Корзина</h2>
+    {% if empty %}
+        <p>Ваша корзина пуста</p>
+    {% else %}
+        <table class="table table-striped table-bordered table-condensed" data-table>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Действия</th>
+            </tr>
+            {% for item in cart %}
+                <tr>
+                    <td data-id="{{ item.id }}">{{ loop.index }}</td>
+                    <td data-name="{{ item.name }}">{{ item.name }}</td>
+                    <td data-price="{{ item.price }}">{{ item.price }} Руб</td>
+                    <td><input type="text" value="{{ item.count }}" class="input-mini"></td>
+                    <td><a href="{{ path('unoegohh_retail_shop_cart_remove', {'id': item.id}) }}" class="btn btn-danger btn-mini remove_item"><i class="icon-remove icon-white"></i></a></td>
+                </tr>
+
+            {% endfor %}
+
+            <tr>
+                <td colspan="2" style="text-align: right;">Итого:</td>
+                <td data-total-price>{{ price }} Руб</td>
+                <td data-total-count colspan="2">{{ count }}</td>
+            </tr>
+
+        </table>
+        <div class="row ">
+            <a href="{{ path("unoegohh_retail_shop_cart_order") }}" class="btn btn-success pull-right">Перейти к оформлению заказа</a>
+        </div>
+    {% endif %}
+{% endblock %}

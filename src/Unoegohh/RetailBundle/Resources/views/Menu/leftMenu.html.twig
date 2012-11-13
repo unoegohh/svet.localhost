@@ -1,8 +1,8 @@
-<ul>
+<ul class="nav nav-tabs nav-stacked">
     {% for item in menu %}
-        <li><a href="{{ item.url }}">{{ item.header }}</a></li>
+        <li><a href="/{{ item.url }}">{{ item.header }}</a></li>
     {% endfor %}
     {% for item in category %}
-        <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        <li><a href="/shop/{{item.url }}">{{ item.title }}</a></li>
     {% endfor %}
 </ul>

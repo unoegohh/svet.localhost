@@ -1,0 +1,17 @@
+{% extends "UnoegohhRetailBundle:Default:layout.html.twig" %}
+
+{% block content %}
+    <div class="row">
+    {% for item in products %}
+            <div class="span3">
+                <a href="{{ path('unoegohh_retail_shop_item',{'name': category, 'id':item.id}) }}">{{ item.name }}</a>
+                {% for photo in item.photos if loop.index == 1%}
+                    <a href="{{ path('unoegohh_retail_shop_item',{'name': category, 'id':item.id}) }}">
+                        <img src="{{ photo.url }}" alt="" class="img-rounded" style="height: 140px;">
+                    </a>
+                {% endfor %}
+                <a href="{{ path('unoegohh_retail_shop_item',{'name': category, 'id':item.id}) }}" class="btn btn-success btn pull-right" style="margin: 10px 0 0 0;">{{ item.price }} руб</a>
+            </div>
+    {% endfor %}
+    </div>
+{% endblock %}

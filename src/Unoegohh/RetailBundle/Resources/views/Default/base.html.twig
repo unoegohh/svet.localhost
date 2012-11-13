@@ -1,12 +1,22 @@
 <html>
     <head>
-        <title>{% block title %}{% endblock %}</title>
-        {% block css %}{% endblock %}
+        <title>{% block title %}MAIN{% endblock %}</title>
+        {% block css %}
+            <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+            <link rel="stylesheet" href="/lightbox/css/lightbox.css">
+        {% endblock %}
         {% block less %}{% endblock %}
-        {% block vendorjs %}{% endblock %}
-        {% block js %}{% endblock %}
+        {% block vendorjs %}
+            <script type="text/javascript" src="/jquery/jquery-1.7.2.min.js"></script>
+            <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="/bootstrap/js/bootstrap-modal.js"></script>
+            <script type="text/javascript" src="/lightbox/js/lightbox.js"></script>
+        {% endblock %}
+        {% block js %}
+        {% endblock %}
     </head>
 <body>
+
     {% block body %}{% endblock %}
 </body>
 </html>

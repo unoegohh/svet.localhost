@@ -1,0 +1,31 @@
+Заказ с сайта
+
+<table>
+    <tr>
+        <td>Название</td>
+        <td>Цена</td>
+        <td>кол-во</td>
+    </tr>
+    {% for item in cart %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.count }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td>Итого</td>
+        <td>{{ total_price }}</td>
+        <td>{{ total_count }}</td>
+    </tr>
+</table>
+<h3>Коментарии</h3>
+<p>{{ order.comments }}</p>
+<h3>ФИО</h3>
+<p>{{ order.name }}</p>
+<h3>Адрес</h3>
+<p>{{ order.address }}</p>
+<h3>Телефон</h3>
+<p>{{ order.phone }}</p>
+<h3>Email</h3>
+<p>{{ order.email }}</p>

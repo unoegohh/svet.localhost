@@ -6,7 +6,7 @@ framework:
     profiler: true
 
 web_profiler:
-    toolbar: true
+#    toolbar: true
 
 monolog:
     handlers:

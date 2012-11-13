@@ -1,5 +1,7 @@
 {% extends "UnoegohhRetailBundle:Default:layout.html.twig" %}
 
 {% block content %}
-    hello
+    <h3>{{ page.header }}</h3>
+
+    {{ page.content | raw }}
 {% endblock %}

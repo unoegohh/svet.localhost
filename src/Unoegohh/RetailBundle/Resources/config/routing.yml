@@ -2,7 +2,37 @@ unoegohh_retail_homepage:
     pattern:  /
     defaults: { _controller: UnoegohhRetailBundle:Default:index }
 
+unoegohh_retail_shop_category:
+    pattern:  /shop/{name}
+    defaults: { _controller: UnoegohhRetailBundle:Shop:category }
 
+unoegohh_retail_shop_item:
+    pattern:  /shop/{name}/{id}
+    defaults: { _controller: UnoegohhRetailBundle:Shop:item }
+
+unoegohh_retail_shop_cart:
+    pattern:  /cart
+    defaults: { _controller: UnoegohhRetailBundle:Shop:cart }
+
+unoegohh_retail_shop_cart_add:
+    pattern:  /cart/add/{id}
+    defaults: { _controller: UnoegohhRetailBundle:Shop:add }
+
+unoegohh_retail_shop_cart_remove:
+    pattern:  /cart/remove/{id}
+    defaults: { _controller: UnoegohhRetailBundle:Shop:remove }
+
+unoegohh_retail_shop_cart_edit:
+    pattern:  /cart/edit/{id}/{count}
+    defaults: { _controller: UnoegohhRetailBundle:Shop:edit }
+
+unoegohh_retail_shop_cart_order:
+    pattern:  /order
+    defaults: { _controller: UnoegohhRetailBundle:Shop:order }
+
+unoegohh_retail_mail_ok:
+    pattern:  /order/ok
+    defaults: { _controller: UnoegohhRetailBundle:Shop:mailOk }
 
 unoegohh_retail_page:
     pattern:  /{url}

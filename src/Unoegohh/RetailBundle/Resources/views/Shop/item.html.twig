@@ -1,0 +1,60 @@
+{% extends "UnoegohhRetailBundle:Default:layout.html.twig" %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(function(){
+            $('#add_to_cart').click(function(e){
+                var id = $(this).attr('data-id');
+                $.post("/cart/add/" + id + "", function(data){
+                    if(data == "ok"){
+                        $('#myModal').modal().show();
+                        var menu = $('#cart_count');
+                        if(menu.length > 0){
+                            console.log(menu.length);
+                            $(menu).html(parseInt($(menu).html()) + 1);
+                        }else{
+                            console.log(2);
+                            $('#cart_link').append('<span class="label label-success" id="cart_count">1</span>');
+                        }
+                    }
+                });
+                e.preventDefault();
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ item.name }} <a href="#" id="add_to_cart" class="btn btn-small btn-success pull-right" data-id="{{ item.id }}" style="margin: 10px 0 0 0">Добавить в корзину</a></h2>
+    <h4>Цена {{ item.price }} руб </h4>
+    <div class="row-fluid">
+        {% for photo in item.photos if loop.index == 1%}
+            <a href="{{ photo.url }}" rel="lightbox[group]" class="span4">
+                <img src="{{ photo.url }}" alt="" style="height: 140px;">
+            </a>
+        {% endfor %}
+        <div class="span8">
+            {% for photo in item.photos %}
+                {% if loop.index != 1 %}
+                    <a href="{{ photo.url }}" rel="lightbox[group]" class="span2">
+                        <img src="{{ photo.url }}" alt="" style="height: 67px;margin: 0 0 6px">
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <p class="span12">
+            {{ item.descr | raw}}</p>
+    </div>
+    <div id="myModal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Ваш товар добавлен в корзину</h3>
+        </div>
+        <div class="modal-body">
+            <p>Вы можите перейти в корзину по этой <a href="{{ path('unoegohh_retail_shop_cart') }}">ссылке</a></p>
+        </div>
+    </div>
+{% endblock %}

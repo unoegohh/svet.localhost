@@ -1,5 +1,13 @@
-<ul>
-    {% for item in menu %}
-        <li><a href="{{ item.url }}">{{ item.header }}</a></li>
-    {% endfor %}
-</ul>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/">DiscoLuxLed</a>
+        <ul class="nav">
+            {% for item in menu %}
+                <li><a href="{{ item.url }}">{{ item.header }}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="nav pull-right">
+            <li><a href="{{ path('unoegohh_retail_shop_cart') }}" id="cart_link"><i class="icon-shopping-cart"></i> Корзина {% render "UnoegohhRetailBundle:Menu:cartMenu" %}</a></li>
+        </ul>
+    </div>
+</div>

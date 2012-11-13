@@ -15,7 +15,7 @@ class MenuController extends Controller
 
         if (!$success) {
             $em = $this->getDoctrine()->getManager();
-            $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuTop' => true),array('position' => "ASC"));
+            $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuTop' => true),array('position' => "Desc"));
             apc_store($key, $menu);
         }
 
@@ -28,20 +28,39 @@ class MenuController extends Controller
 
         $successMenu = false;
         $successCat = false;
-        $key = 'leftMenu';
-//        $menu = apc_fetch($key, $successMenu);
-//        $category = apc_fetch($key, $successCat);
+        $keyMenu = 'leftMenu';
+        $keyCat = 'leftCat';
+        $menu = apc_fetch($keyMenu, $successMenu);
+        $category = apc_fetch($keyCat, $successCat);
 
         if (!$successMenu && !$successCat) {
             $em = $this->getDoctrine()->getManager();
-            $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuLeft' => true),array('position' => "ASC"));
-            $category = $em->getRepository('UnoegohhAdminBundle:ProductCategory')->findBy(array('enabled' => true),array('position' => "ASC"));
-            apc_store($key, $menu);
+            $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuLeft' => true),array('position' => "Desc"));
+            $category = $em->getRepository('UnoegohhAdminBundle:ProductCategory')->findBy(array('enabled' => true),array('position' => "Desc"));
+            apc_store($keyMenu, $menu);
+            apc_store($keyCat, $category);
         }
 
         return $this->render('UnoegohhRetailBundle:Menu:leftMenu.html.twig', array(
             'menu' => $menu,
             'category' => $category
+        ));
+    }
+    public function cartMenuAction()
+    {
+
+        $session = $this->getRequest()->getSession();
+        $cart = $session->get('cart');
+
+        $count = 0;
+        if(is_array($cart)){
+            foreach($cart as $item){
+                $count = $count + $item['count'];
+            }
+        }
+
+        return $this->render('UnoegohhRetailBundle:Menu:cartMenu.html.twig', array(
+            'count' => $count,
         ));
     }
 }

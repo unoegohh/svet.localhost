@@ -5,6 +5,7 @@ namespace Unoegohh\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * @ORM\Entity
  */
@@ -14,7 +15,6 @@ class Product {
     public function __construct()
     {
         $this->photos = new ArrayCollection();
-//        $this->category = new ArrayCollection();
     }
 
     /**
@@ -27,7 +27,7 @@ class Product {
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $enabled;
+    protected  $enabled;
 
     /**
      * @ORM\Column(type="string")
