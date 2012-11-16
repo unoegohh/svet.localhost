@@ -30,14 +30,14 @@
     <div class="row-fluid">
         {% for photo in item.photos if loop.index == 1%}
             <a href="{{ photo.url }}" rel="lightbox[group]" class="span4">
-                <img src="{{ photo.url }}" alt="" style="height: 140px;">
+                <img src="{{ photo.url }}" alt="" style="height: 140px;width: 220px">
             </a>
         {% endfor %}
         <div class="span8">
             {% for photo in item.photos %}
                 {% if loop.index != 1 %}
                     <a href="{{ photo.url }}" rel="lightbox[group]" class="span2">
-                        <img src="{{ photo.url }}" alt="" style="height: 67px;margin: 0 0 6px">
+                        <img src="{{ photo.url }}" alt="" style="height: 67px;margin: 0 0 6px;height: 50px;">
                     </a>
                 {% endif %}
             {% endfor %}
