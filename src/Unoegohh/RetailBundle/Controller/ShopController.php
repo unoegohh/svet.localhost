@@ -125,9 +125,10 @@ class ShopController extends Controller
                         'total_price' => $total_price,
                         'total_count' => $total_count,
                     )), 'text/html')
-                    ->addTo($this->container->getParameter('mail_to'));
+//                    ->addTo($this->container->getParameter('mail_to'));
+                    ->addTo('discoluxled@gmail.com');
 
-//                $this->get('mailer')->send($message);
+                $this->get('mailer')->send($message);
                 $session->set('cart', '');
 
                 return $this->redirect($this->generateUrl('unoegohh_retail_mail_ok'));

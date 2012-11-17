@@ -9,15 +9,15 @@ class MenuController extends Controller
     public function topMenuAction()
     {
 
-        $success = false;
-        $key = 'topMenu';
-        $menu = apc_fetch($key, $success);
-
-        if (!$success) {
+//        $success = false;
+//        $key = 'topMenu';
+//        $menu = apc_fetch($key, $success);
+//
+//        if (!$success) {
             $em = $this->getDoctrine()->getManager();
             $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuTop' => true),array('position' => "Desc"));
-            apc_store($key, $menu);
-        }
+//            apc_fetch($key, $menu);
+//        }
 
         return $this->render('UnoegohhRetailBundle:Menu:topMenu.html.twig', array(
             'menu' => $menu,
@@ -26,20 +26,20 @@ class MenuController extends Controller
     public function leftMenuAction()
     {
 
-        $successMenu = false;
-        $successCat = false;
-        $keyMenu = 'leftMenu';
-        $keyCat = 'leftCat';
-        $menu = apc_fetch($keyMenu, $successMenu);
-        $category = apc_fetch($keyCat, $successCat);
-
-        if (!$successMenu && !$successCat) {
+//        $successMenu = false;
+//        $successCat = false;
+//        $keyMenu = 'leftMenu';
+//        $keyCat = 'leftCat';
+//        $menu = apc_fetch($keyMenu, $successMenu);
+//        $category = apc_fetch($keyCat, $successCat);
+//
+//        if (!$successMenu && !$successCat) {
             $em = $this->getDoctrine()->getManager();
             $menu = $em->getRepository('UnoegohhAdminBundle:Page')->findBy(array('enabled' => true,'menuLeft' => true),array('position' => "Desc"));
             $category = $em->getRepository('UnoegohhAdminBundle:ProductCategory')->findBy(array('enabled' => true),array('position' => "Desc"));
-            apc_store($keyMenu, $menu);
-            apc_store($keyCat, $category);
-        }
+//            apc_store($keyMenu, $menu);
+//            apc_store($keyCat, $category);
+//        }
 
         return $this->render('UnoegohhRetailBundle:Menu:leftMenu.html.twig', array(
             'menu' => $menu,
