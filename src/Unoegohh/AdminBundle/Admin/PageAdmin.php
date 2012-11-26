@@ -26,8 +26,11 @@ class PageAdmin extends Admin
                     'data-width' => '700',
                     'data-theme' => 'advanced' // simple, advanced, bbcode
                 ),))
+            ->add('menu_name',null,array('label' => 'Название меню', 'required' => false))
             ->add('menuTop',null,array('label' => 'В меню (верх)', 'required' => false))
             ->add('menuLeft',null,array('label' => 'В меню (лево)', 'required' => false))
+            ->add('keywords',null,array('label' => 'Keywords', 'required' => false))
+            ->add('description',null,array('label' => 'Description', 'required' => false))
             ->add('position',null,array('label' => 'Порядок', 'required' => false))
             ->end()
         ;

@@ -53,6 +53,21 @@ class Page {
     protected $menuLeft;
 
     /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    protected $menu_name;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $keywords;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $description;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     protected $enabled;
@@ -145,6 +160,36 @@ class Page {
     public function getUrl()
     {
         return $this->url;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+    }
+
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    public function setMenuName($menu_name)
+    {
+        $this->menu_name = $menu_name;
+    }
+
+    public function getMenuName()
+    {
+        return $this->menu_name;
     }
 
 }

@@ -3,7 +3,11 @@
         <a class="brand" href="/">DiscoLuxLed</a>
         <ul class="nav">
             {% for item in menu %}
-                <li><a href="{{ item.url }}">{{ item.header }}</a></li>
+                {% if item.menuname %}
+                    <li><a href="/{{ item.url }}">{{ item.menuname }}</a></li>
+                {% else %}
+                    <li><a href="/{{ item.url }}">{{ item.header }}</a></li>
+                {% endif %}
             {% endfor %}
         </ul>
         <ul class="nav pull-right">

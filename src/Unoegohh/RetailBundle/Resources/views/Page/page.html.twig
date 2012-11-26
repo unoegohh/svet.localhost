@@ -1,7 +1,16 @@
 {% extends "UnoegohhRetailBundle:Default:layout.html.twig" %}
 
-{% block content %}
 
+{% block head %}
+    {% if page.keywords is defined %}
+        <meta name="keywords" content="{{ page.keywords}}">
+    {% endif %}
+    {% if page.description is defined %}
+        <meta name="description" content="{{ page.description}}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
     <h3>{{ page.header }}</h3>
 
     {{ page.content | raw }}
