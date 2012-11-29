@@ -56,7 +56,7 @@ class Product {
     protected $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProductPhoto",mappedBy="product",cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="ProductPhoto",mappedBy="product",cascade={"persist", "remove"},orphanRemoval=true)
      */
     protected $photos;
 
@@ -150,6 +150,13 @@ class Product {
     {
         $photo->setProduct($this);
         $this->photos[] = $photo;
+    }
+    public function setPhoto($photos)
+    {
+        $this->photos = new ArrayCollection();
+        foreach ($photos as $photo) {
+            $this->addPhoto($photo);
+        }
     }
 
     public function addPhotos($photos)
