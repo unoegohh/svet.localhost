@@ -65,6 +65,10 @@ class Product {
      */
     protected $position;
 
+    /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    protected $date_in;
 
     public function setCategory($category)
     {
@@ -172,6 +176,16 @@ class Product {
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    public function setDateIn($date_in)
+    {
+        $this->date_in = $date_in;
+    }
+
+    public function getDateIn()
+    {
+        return $this->date_in;
     }
 
 }

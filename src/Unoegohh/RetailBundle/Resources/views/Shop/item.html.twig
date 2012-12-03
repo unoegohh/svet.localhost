@@ -25,7 +25,13 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{{ item.name }} <a href="#" id="add_to_cart" class="btn btn-small btn-success pull-right" data-id="{{ item.id }}" style="margin: 10px 0 0 0">Добавить в корзину</a></h2>
+    <h2>{{ item.name }}
+        {% if item.datein == '' %}
+            <a href="#" id="add_to_cart" class="btn btn-small btn-success pull-right" data-id="{{ item.id }}" style="margin: 10px 0 0 0">Добавить в корзину</a>
+        {% else %}
+            <span style="margin: 12px 0 0 0" class="label label-warning pull-right">Ожидается поступление {{ item.datein }}</span>
+        {% endif %}
+    </h2>
     <h4>Цена {{ item.price }} руб </h4>
     <div class="row-fluid">
         {% for photo in item.photos if loop.index == 1%}
@@ -45,8 +51,9 @@
     </div>
     <br>
     <div class="row">
-        <p class="span9">
-            {{ item.descr | raw}}</p>
+        <div class="span9">
+            {{ item.descr | raw}}
+        </div>
     </div>
     <div id="myModal" class="modal hide fade">
         <div class="modal-header">

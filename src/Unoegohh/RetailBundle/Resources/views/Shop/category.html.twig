@@ -10,7 +10,12 @@
                         <img src="{{ photo.url }}" alt="" class="img-rounded" style="height: 140px;width: 220px">
                     </a>
                 {% endfor %}
-                <a href="{{ path('unoegohh_retail_shop_item',{'name': category, 'id':item.id}) }}" class="btn btn-success btn pull-right" style="margin: 10px 0 0 0;">{{ item.price }} руб</a>
+                {% if item.datein == '' %}
+                    <a href="{{ path('unoegohh_retail_shop_item',{'name': category, 'id':item.id}) }}" class="btn btn-success btn pull-right" style="margin: 10px 0 0 0;">{{ item.price }} руб</a>
+                {% else %}
+                    <span style="margin: 17px 0 0 0" class="label label-warning pull-right">Ожидается поступление {{ item.datein }}</span>
+
+                {% endif %}
             </div>
     {% endfor %}
     </div>
