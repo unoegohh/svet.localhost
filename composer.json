@@ -18,33 +18,17 @@
     "require": {
         "symfony/symfony": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.*@dev",
         "sensio/framework-extra-bundle": "2.1.*",
-        "rithis/composer-handler": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.x-dev",
-        "sonata-project/admin-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "2.0.x-dev",
-        "sonata-project/jquery-bundle": "dev-master",
-        "sonata-project/exporter": "dev-master",
-        "sonata-project/block-bundle": "dev-master",
         "doctrine/doctrine-bundle": "1.0.*@stable",
         "stfalcon/tinymce-bundle": "dev-master",
-        "sensio/generator-bundle": "2.1.x-dev",
-        "sonata-project/doctrine-orm-admin-bundle": "@dev"
+        "sensio/generator-bundle": "2.1.x-dev"
     },
     "autoload": {
         "psr-0": {
             "": "src"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Rithis\\Composer\\ScriptHandler::touchParameters",
-            "Rithis\\Composer\\ScriptHandler::clearCache",
-            "Rithis\\Composer\\ScriptHandler::installAssets"
-        ],
-        "post-update-cmd": [
-            "Rithis\\Composer\\ScriptHandler::clearCache",
-            "Rithis\\Composer\\ScriptHandler::installAssets"
-        ]
     }
 }
