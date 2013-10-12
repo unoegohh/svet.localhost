@@ -4,3 +4,11 @@ parameters:
     mail_from: unoegohh@gmail.com
     mail_to: unoegohh@gmail.com
     mail_name:  'Заказ с сайта'
+
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: svet
+    database_user: root
+    database_password: root
+    database_path: ~
